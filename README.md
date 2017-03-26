@@ -15,13 +15,13 @@ This code uses standard Julia v0.6 syntax
 * a `type` is a container for data
 * `<:` and `::` are type assertions; read them as "is a"
 * a type can inherit from an abstract type. For example, the type statement
-```
+```julia
 abstract type Bar end
-type Foo<:bar end
+type Foo<:Bar end
 ```
 means that the type `Foo` inherits from the type `Bar`.
 * functions are defined to take arguments of specific types. So, if we define
-```
+```julia
 function say_hi(thing::Foo)
   print("hi, foo")
 end
@@ -29,7 +29,7 @@ end
 and call `say_hi(Foo())`, it will correctly print `"hi, foo"`.
 But `say_hi(5)` will be an error, since `5` is not a `Foo`.
 * If methods are not defined for the type, then they fall back to the default methods defined for the abstract type. For example,
-```
+```julia
 function say_hello(thing::Bar)
   print("hello, bar")
 end
