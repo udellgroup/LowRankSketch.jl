@@ -1,5 +1,8 @@
 module LowRankSketch
 
-# package code goes here
+import Base: *, show
+
+include("dim_redux.jl")
+include("sketch.jl")
 
 end # module
