@@ -44,7 +44,8 @@ function low_rank_approx(sk::Sketch)
     Q,_ = qr(sk.Y)
     U1,T1 = qr(sk.Φ*Q)
     U2,T2 = qr(sk.Ψ*P)
-    W = T1\(U1'*sk.Z*U2)/conj(T2)
+    W = pinv(T1)(U1'*sk.Z*U2)*pinv(conj(T2))
+    # W = T1\(U1'*sk.Z*U2)/conj(T2)
     return (Q,W,P)
 end
 

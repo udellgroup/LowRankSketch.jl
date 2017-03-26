@@ -9,7 +9,7 @@ abstract type DimRedux{F<:Number} end
 """By default, a DimRedux map reduces a matrix of data via left or right multiplication by its internal variable Ξ.
 We extend the multiplication method * to allow multiplication by dimension reduction maps"""
 *{F<:Number}(dr::DimRedux{F}, M::Matrix{F}) = dr.Ξ * M
-*{F<:Number}(M::Matrix{F}, dr::DimRedux{F}) = M * dr.Ξ' # nb: different from paper
+*{F<:Number}(M::Matrix{F}, dr::DimRedux{F}) = M * dr.Ξ' #' nb: different from paper
 
 """GaussDimRedux is a kind of dimension reduction map
 It reduces data over the field F using the Gaussian random matrix Ξ"""
