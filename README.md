@@ -34,4 +34,6 @@ will print `hello, bar`: `f::Bar` is true since `Foo` inherits from `Bar`.
 # Differences with pseudocode
 
 * To avoid defining ctranspose for a DimRedux map, I've moved the ctranspose inside right-multiplication by a DimRedux map.
-* I think there's something wrong in the definition of multiplication for SSFRT; the dimensions don't even work.
+* I've followed the math for the SSRFT sketch rather than the pseudocode, which was wrong
+* The SparseDimRedux is not yet implemented
+* The PSDSketch is not yet implemented
