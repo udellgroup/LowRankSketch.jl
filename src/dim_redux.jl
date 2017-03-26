@@ -67,11 +67,11 @@ function SSRFTDimRedux{F<:Number}(k::Int, n::Int, ::Type{F}=Float64)
     Π2 = randperm(n) # a random permutation of {1,...,n}
     R = randperm(n)[1:k] # a random selection of k elements from {1,...,n}
     if F<:Real
-        ϵ1 = 1.0*one(F) * rand([-1, 1], n) # a random ±1 vector of length n in the field F
-        ϵ2 = 1.0*one(F) * rand([-1, 1], n) # a random ±1 vector of length n in the field F
-    elseif F<:Complex
-        ϵ1 = 1.0*one(F) * rand([-1, 1], n) + im * 1.0 * one(F) * rand([-1, 1], n) # a random ±1±i vector of length n in the field F
-        ϵ2 = 1.0*one(F) * rand([-1, 1], n) + im * 1.0 * one(F) * rand([-1, 1], n) # a random ±1±i vector of length n in the field F
+      ϵ1 = one(F) * rand([-1, 1], n) # a random ±1 vector of length n in the field F
+      ϵ2 = one(F) * rand([-1, 1], n) # a random ±1 vector of length n in the field F
+  elseif F<:Complex
+      ϵ1 = one(F) * rand([-1, 1], n) + im*one(F) * rand([-1, 1], n) # a random ±1±i vector of length n in the field F
+      ϵ2 = one(F) * rand([-1, 1], n) + im*one(F) * rand([-1, 1], n) # a random ±1±i vector of length n in the field F
     else error("SSRFTDimRedux not defined over the field $F")
     end
     return SSRFTDimRedux(Π1,ϵ1,Π2,ϵ2,R)
@@ -117,6 +117,8 @@ function *{F<:Number}(M::Matrix{F}, dr::SSRFTDimRedux{F})
   B = B[:,dr.R] # select columns
   return B
 end
+
+# The following is the pseudocode from the paper, but it doens't match the math
 
 # """Constructs a SSRFTDimRedux map which reduces data in F^n to F^k
 # By default, the field F is the real numbers"""

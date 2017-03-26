@@ -6,6 +6,7 @@ TOL = 1e-1
 
 m,n,k,s = 100,200,10,10
 # m,n,k,s = 10,20,3,3
+srand(1)
 
 facts("Sketch") do
 

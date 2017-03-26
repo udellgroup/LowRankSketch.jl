@@ -28,7 +28,7 @@ facts("DimRedux") do
   M'*dr
 
   # complex valued sparse dimension reduction
-  dr = SparseDimRedux(k,n,.2,Complex)
+  dr = SparseDimRedux(k,n,.2,Complex{Float64})
   M = rand(n,m) + im*rand(n,m)
   dr*M
   M'*dr
@@ -40,7 +40,7 @@ facts("DimRedux") do
   M'*dr
 
   # complex valued SSFRT dimension reduction
-  dr = SSRFTDimRedux(k,n,Complex)
+  dr = SSRFTDimRedux(k,n,Complex{Float64})
   M = rand(n,m) + im*rand(n,m)
   dr*M
   M'*dr
