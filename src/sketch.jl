@@ -44,8 +44,10 @@ function low_rank_approx(sk::Sketch)
     Q,_ = qr(sk.Y)
     U1,T1 = qr(sk.Φ*Q)
     U2,T2 = qr(sk.Ψ*P)
-    # W = pinv(T1)*(U1'*sk.Z*U2)*pinv(conj(T2))
-    W = T1\(U1'*sk.Z*U2)/conj(T2)
+    # these work for real gaussian case
+    # W = pinv(T1)*(U1'*sk.Z*U2)*pinv(conj(T2'))
+    # W = T1\(U1'*sk.Z*U2)/(T2')
+    W = T1\(U1'*sk.Z*U2)/(T2')
     return (Q,W,P)
 end
 
@@ -53,5 +55,5 @@ function fixed_rank_approx(sk::Sketch, r::Int)
     Q,W,P = low_rank_approx(sk)
     svdW,_ = svds(W,nsv=r)
     U,Σ,V = svdW.U, svdW.S, svdW.Vt'
-    return (Q*U,Σ,P*V)
+    return (Q*U,diagm(Σ),P*V)
 end

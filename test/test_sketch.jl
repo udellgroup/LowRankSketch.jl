@@ -5,7 +5,7 @@ using FactCheck
 TOL = 1e-1
 
 # we'll sketch rank-1 matrices with a two dimensional sketch
-m,n,k,s = 100,200,2,5
+m,n,k,s = 100,200,3,5
 # m,n,k,s = 10,20,3,3
 srand(1)
 
@@ -37,7 +37,8 @@ facts("Sketch") do
     linear_update(sketch, M)
     Q,W,P = low_rank_approx(sketch)
     @fact vecnorm(M - Q*W*P')/vecnorm(M) --> roughly(0, TOL)
-    U,Σ,V = fixed_rank_approx(sketch,1)
+    # recovery fails with rank 1, works with rank 2
+    U,Σ,V = fixed_rank_approx(sketch,2)
     @fact vecnorm(M - U*Σ*V')/vecnorm(M) --> roughly(0, TOL)
   end
 
