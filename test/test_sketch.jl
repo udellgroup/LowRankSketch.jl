@@ -33,18 +33,18 @@ facts("Sketch") do
 
   context("sketch complex matrix with GaussDimRedux") do
     sketch = Sketch(m,n,k,s,GaussDimRedux,Complex{Float64})
-    M = rand(m,1)*rand(1,n) + im*rand(m,1)*rand(1,n)
+    M = (rand(m,1) + im*rand(m,1))*(rand(1,n) + im*rand(1,n))
     linear_update(sketch, M)
     Q,W,P = low_rank_approx(sketch)
     @fact vecnorm(M - Q*W*P')/vecnorm(M) --> roughly(0, TOL)
-    # recovery fails with rank 1, works with rank 2
+    # recovery of rank 1 complex matrix fails with rank 1 fixed rank approx, works with rank 2
     U,Σ,V = fixed_rank_approx(sketch,2)
     @fact vecnorm(M - U*Σ*V')/vecnorm(M) --> roughly(0, TOL)
   end
 
   context("sketch complex matrix with SSRFTDimRedux") do
     sketch = Sketch(m,n,k,s,SSRFTDimRedux,Complex{Float64})
-    M = rand(m,1)*rand(1,n) + im*rand(m,1)*rand(1,n)
+    M = (rand(m,1) + im*rand(m,1))*(rand(1,n) + im*rand(1,n))
     linear_update(sketch, M)
     Q,W,P = low_rank_approx(sketch)
     @fact vecnorm(M - Q*W*P')/vecnorm(M) --> roughly(0, TOL)
