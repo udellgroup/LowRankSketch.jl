@@ -6,7 +6,18 @@
 
 [![codecov.io](http://codecov.io/github/madeleineudell/LowRankSketch.jl/coverage.svg?branch=master)](http://codecov.io/github/madeleineudell/LowRankSketch.jl?branch=master)
 
-This package implements a forthcoming paper by Tropp, Yurtsever, Udell and Cevher on sketching methods for low rank matrix approximation.
+This package implements the following paper by Tropp, Yurtsever, Udell and Cevher on sketching methods for low rank matrix approximation.
+```
+@article{tropp2019streaming,
+	title={Streaming Low-Rank Matrix Approximation with an Application to Scientific Simulation},
+	author={Tropp, Joel A and Yurtsever, Alp and Udell, Madeleine and Cevher, Volkan},
+	year={2019},
+	archivePrefix = {arXiv},
+	eprint = {1902.08651},
+	journal={SIAM Scientific Computing (SISC)},
+	url={http://epubs.siam.org/toc/sjoce3/41/4}
+}
+```
 
 # Syntax
 
